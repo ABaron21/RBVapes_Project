@@ -32,4 +32,8 @@ public class CustomerService {
 		oldInfo.setPhoneNumber(newInfo.getPhoneNumber());
 		return this.repo.save(oldInfo);
 	}
+
+	public void delete(Long id) {
+		this.repo.deleteById(id);
+	}
 }

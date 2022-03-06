@@ -2,6 +2,7 @@ package com.qa.rbvapes.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,5 +36,10 @@ public class CustomerController {
 	@PutMapping("/update/{id}")
 	public Customers updateCustomer(@PathVariable Long id, @RequestBody Customers newInfo) {
 		return this.service.updateInfo(id, newInfo);
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public void deleteCustomer(@PathVariable Long id) {
+		this.service.delete(id);
 	}
 }
