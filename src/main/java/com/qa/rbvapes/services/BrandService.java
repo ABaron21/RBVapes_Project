@@ -24,4 +24,8 @@ public class BrandService {
 	public List<Brands> readAll() {
 		return this.repo.findAll();
 	}
+
+	public Brands readBrandName(String brandName) {
+		return this.repo.findByBrandName(brandName);
+	}
 }
