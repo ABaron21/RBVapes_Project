@@ -23,27 +23,27 @@ public class CustomerController {
 		this.service = service;
 	}
 
-	@PostMapping("/create")
+	@PostMapping("/createCustomer")
 	public Customers createCustomer(@RequestBody Customers info) {
 		return this.service.createNew(info);
 	}
 
-	@GetMapping("/readAll")
+	@GetMapping("/readAllCustomers")
 	public List<Customers> readAll() {
 		return this.service.readAll();
 	}
 
-	@GetMapping("/readById/{id}")
+	@GetMapping("/readCustomerById/{id}")
 	public Customers readById(@PathVariable Long id) {
 		return this.service.readId(id);
 	}
 
-	@PutMapping("/update/{id}")
+	@PutMapping("/updateCustomer/{id}")
 	public Customers updateCustomer(@PathVariable Long id, @RequestBody Customers newInfo) {
 		return this.service.updateInfo(id, newInfo);
 	}
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/deleteCustomer/{id}")
 	public void deleteCustomer(@PathVariable Long id) {
 		this.service.delete(id);
 	}
