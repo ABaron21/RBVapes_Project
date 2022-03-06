@@ -1,5 +1,7 @@
 package com.qa.rbvapes.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.rbvapes.domains.Brands;
@@ -19,4 +21,7 @@ public class BrandService {
 		return this.repo.save(info);
 	}
 
+	public List<Brands> readAll() {
+		return this.repo.findAll();
+	}
 }

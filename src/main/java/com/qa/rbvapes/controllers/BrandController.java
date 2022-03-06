@@ -1,5 +1,8 @@
 package com.qa.rbvapes.controllers;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,4 +25,8 @@ public class BrandController {
 		return this.service.createNew(info);
 	}
 
+	@GetMapping("/readAllBrands")
+	public List<Brands> readAllBrands() {
+		return this.service.readAll();
+	}
 }
