@@ -36,4 +36,8 @@ public class BrandService {
 		oldInfo.setPrice(newInfo.getPrice());
 		return this.repo.save(oldInfo);
 	}
+
+	public void delete(Long id) {
+		this.repo.deleteById(id);
+	}
 }
