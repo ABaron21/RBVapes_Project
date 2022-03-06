@@ -1,5 +1,7 @@
 package com.qa.rbvapes.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.rbvapes.domains.Customers;
@@ -19,4 +21,7 @@ public class CustomerService {
 		return this.repo.save(Info);
 	}
 
+	public List<Customers> readAll() {
+		return this.repo.findAll();
+	}
 }
