@@ -24,4 +24,12 @@ public class CustomerService {
 	public List<Customers> readAll() {
 		return this.repo.findAll();
 	}
+
+	public Customers updateInfo(Long id, Customers newInfo) {
+		Customers oldInfo = this.repo.getById(id);
+		oldInfo.setName(newInfo.getName());
+		oldInfo.setAddress(newInfo.getAddress());
+		oldInfo.setPhoneNumber(newInfo.getPhoneNumber());
+		return this.repo.save(oldInfo);
+	}
 }
