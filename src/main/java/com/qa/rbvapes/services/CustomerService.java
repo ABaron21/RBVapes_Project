@@ -1,6 +1,7 @@
 package com.qa.rbvapes.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,14 @@ public class CustomerService {
 
 	public List<Customers> readAll() {
 		return this.repo.findAll();
+	}
+
+	public Customers readId(Long id) {
+		Optional<Customers> optionalCustomer = this.repo.findById(id);
+		if (optionalCustomer.isPresent()) {
+			return optionalCustomer.get();
+		}
+		return null;
 	}
 
 	public Customers updateInfo(Long id, Customers newInfo) {

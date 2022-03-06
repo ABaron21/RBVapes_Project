@@ -33,6 +33,11 @@ public class CustomerController {
 		return this.service.readAll();
 	}
 
+	@GetMapping("/readById/{id}")
+	public Customers readById(@PathVariable Long id) {
+		return this.service.readId(id);
+	}
+
 	@PutMapping("/update/{id}")
 	public Customers updateCustomer(@PathVariable Long id, @RequestBody Customers newInfo) {
 		return this.service.updateInfo(id, newInfo);
