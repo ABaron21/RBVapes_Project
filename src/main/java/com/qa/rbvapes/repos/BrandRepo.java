@@ -8,4 +8,5 @@ import com.qa.rbvapes.domains.Brands;
 @Repository
 public interface BrandRepo extends JpaRepository<Brands, Long> {
 
+	Brands findByBrandName(String brandName);
 }
