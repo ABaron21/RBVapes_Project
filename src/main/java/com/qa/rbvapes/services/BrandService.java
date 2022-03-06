@@ -28,4 +28,12 @@ public class BrandService {
 	public Brands readBrandName(String brandName) {
 		return this.repo.findByBrandName(brandName);
 	}
+
+	public Brands update(Long id, Brands newInfo) {
+		Brands oldInfo = this.repo.getById(id);
+		oldInfo.setBrandName(newInfo.getBrandName());
+		oldInfo.setPuffCount(newInfo.getPuffCount());
+		oldInfo.setPrice(newInfo.getPrice());
+		return this.repo.save(oldInfo);
+	}
 }
