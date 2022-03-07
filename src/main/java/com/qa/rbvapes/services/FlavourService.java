@@ -24,4 +24,8 @@ public class FlavourService {
 	public List<Flavours> readAll() {
 		return this.repo.findAll();
 	}
+
+	public void delete(Long id) {
+		this.repo.deleteById(id);
+	}
 }
