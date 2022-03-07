@@ -25,6 +25,15 @@ public class OrderInfoService {
 		return this.repo.findAll();
 	}
 
+	public OrderInfo update(Long id, OrderInfo newInfo) {
+		OrderInfo oldInfo = this.repo.getById(id);
+		oldInfo.setCustomerID(newInfo.getCustomerID());
+		oldInfo.setOrderID(newInfo.getOrderID());
+		oldInfo.setDatePlaced(newInfo.getDatePlaced());
+		oldInfo.setDeliveryDate(newInfo.getDeliveryDate());
+		return this.repo.save(oldInfo);
+	}
+
 	public void delete(Long id) {
 		this.repo.deleteById(id);
 	}
