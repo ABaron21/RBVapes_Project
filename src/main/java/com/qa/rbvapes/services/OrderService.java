@@ -18,12 +18,14 @@ public class OrderService {
 	private OrderRepo repo;
 	private BrandRepo Brepo;
 	private FlavourRepo Frepo;
+	private FlavourService Fservice;
 
-	public OrderService(OrderRepo repo, BrandRepo Brepo, FlavourRepo Frepo) {
+	public OrderService(OrderRepo repo, BrandRepo Brepo, FlavourRepo Frepo, FlavourService Fservice) {
 		super();
 		this.repo = repo;
 		this.Brepo = Brepo;
 		this.Frepo = Frepo;
+		this.Fservice = Fservice;
 	}
 
 	public Orders createNew(Orders info) {
@@ -36,6 +38,7 @@ public class OrderService {
 		newOrder.setFlavourName(flavour.getFlavourName());
 		newOrder.setItemQuantity(info.getItemQuantity());
 		newOrder.setOrderPrice(priceCalc(info.getItemQuantity(), info.getBrandID()));
+		Fservice.updateQtnOrder(newOrder.getFlavourID(), info.getItemQuantity());
 		return this.repo.save(newOrder);
 	}
 

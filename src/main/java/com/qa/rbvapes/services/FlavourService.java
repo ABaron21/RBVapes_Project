@@ -37,6 +37,13 @@ public class FlavourService {
 		return this.repo.save(oldInfo);
 	}
 
+	public void updateQtnOrder(Long id, int itemAmount) {
+		Flavours oldAmount = this.repo.getById(id);
+		int newAmount = oldAmount.getQuantity() - itemAmount;
+		oldAmount.setQuantity(newAmount);
+		this.repo.save(oldAmount);
+	}
+
 	public void delete(Long id) {
 		this.repo.deleteById(id);
 	}
