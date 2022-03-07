@@ -33,6 +33,11 @@ public class FlavourController {
 		return this.service.readAll();
 	}
 
+	@GetMapping("/readFlavoursByBrand/{brandName}")
+	public List<Flavours> readByBrand(@PathVariable String brandName) {
+		return this.service.readFlavours(brandName);
+	}
+
 	@PutMapping("/updateFlavour/{id}")
 	public Flavours updateFlavour(@PathVariable Long id, @RequestBody Flavours newInfo) {
 		return this.service.updateInfo(id, newInfo);

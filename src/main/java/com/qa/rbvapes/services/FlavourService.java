@@ -25,6 +25,10 @@ public class FlavourService {
 		return this.repo.findAll();
 	}
 
+	public List<Flavours> readFlavours(String brandName) {
+		return this.repo.findAllByBrandName(brandName);
+	}
+
 	public Flavours updateInfo(Long id, Flavours newInfo) {
 		Flavours oldInfo = this.repo.getById(id);
 		oldInfo.setFlavourName(newInfo.getFlavourName());
