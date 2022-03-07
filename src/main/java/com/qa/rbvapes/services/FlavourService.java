@@ -25,6 +25,14 @@ public class FlavourService {
 		return this.repo.findAll();
 	}
 
+	public Flavours updateInfo(Long id, Flavours newInfo) {
+		Flavours oldInfo = this.repo.getById(id);
+		oldInfo.setFlavourName(newInfo.getFlavourName());
+		oldInfo.setBrandName(newInfo.getBrandName());
+		oldInfo.setQuantity(newInfo.getQuantity());
+		return this.repo.save(oldInfo);
+	}
+
 	public void delete(Long id) {
 		this.repo.deleteById(id);
 	}
