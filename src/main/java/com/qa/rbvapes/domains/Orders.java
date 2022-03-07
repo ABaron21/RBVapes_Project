@@ -16,34 +16,29 @@ public class Orders {
 	private int brandID;
 	private Long flavourID;
 	private double orderPrice;
-	private String datePlaced;
-	private String deliveryDate;
+	private int itemQuantity;
 
 	public Orders() {
 		super();
 	}
 
-	public Orders(Long id, Long customerID, int brandID, Long flavourID, double orderPrice, String datePlaced,
-			String deliveryDate) {
+	public Orders(Long id, Long customerID, int brandID, Long flavourID, double orderPrice, int itemQuantity) {
 		super();
 		Id = id;
 		this.customerID = customerID;
 		this.brandID = brandID;
 		this.flavourID = flavourID;
 		this.orderPrice = orderPrice;
-		this.datePlaced = datePlaced;
-		this.deliveryDate = deliveryDate;
+		this.itemQuantity = itemQuantity;
 	}
 
-	public Orders(Long customerID, int brandID, Long flavourID, double orderPrice, String datePlaced,
-			String deliveryDate) {
+	public Orders(Long customerID, int brandID, Long flavourID, double orderPrice, int itemQuantity) {
 		super();
 		this.customerID = customerID;
 		this.brandID = brandID;
 		this.flavourID = flavourID;
 		this.orderPrice = orderPrice;
-		this.datePlaced = datePlaced;
-		this.deliveryDate = deliveryDate;
+		this.itemQuantity = itemQuantity;
 	}
 
 	public Long getId() {
@@ -86,26 +81,18 @@ public class Orders {
 		this.orderPrice = orderPrice;
 	}
 
-	public String getDatePlaced() {
-		return datePlaced;
+	public int getItemQuantity() {
+		return itemQuantity;
 	}
 
-	public void setDatePlaced(String datePlaced) {
-		this.datePlaced = datePlaced;
-	}
-
-	public String getDeliveryDate() {
-		return deliveryDate;
-	}
-
-	public void setDeliveryDate(String deliveryDate) {
-		this.deliveryDate = deliveryDate;
+	public void setItemQuantity(int itemQuantity) {
+		this.itemQuantity = itemQuantity;
 	}
 
 	@Override
 	public String toString() {
 		return "Orders [Id=" + Id + ", customerID=" + customerID + ", brandID=" + brandID + ", flavourID=" + flavourID
-				+ ", orderPrice=" + orderPrice + ", datePlaced=" + datePlaced + ", deliveryDate=" + deliveryDate + "]";
+				+ ", orderPrice=" + orderPrice + ", itemQuantity=" + itemQuantity + "]";
 	}
 
 }
