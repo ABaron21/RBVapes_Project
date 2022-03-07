@@ -1,6 +1,7 @@
 package com.qa.rbvapes.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,14 @@ public class OrderService {
 
 	public List<Orders> readAll() {
 		return this.repo.findAll();
+	}
+
+	public Orders readById(Long id) {
+		Optional<Orders> optionalOrder = this.repo.findById(id);
+		if (optionalOrder.isPresent()) {
+			return optionalOrder.get();
+		}
+		return null;
 	}
 
 	public void delete(Long id) {

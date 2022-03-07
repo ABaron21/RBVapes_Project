@@ -32,6 +32,11 @@ public class OrderController {
 		return this.service.readAll();
 	}
 
+	@GetMapping("/readOrderById/{id}")
+	public Orders readOrderById(@PathVariable Long id) {
+		return this.service.readById(id);
+	}
+
 	@DeleteMapping("/deleteOrder/{id}")
 	public void deleteOrder(@PathVariable Long id) {
 		this.service.delete(id);
