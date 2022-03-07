@@ -12,38 +12,49 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 
-	private Long customerID;
 	private int brandID;
+	private String brandName;
 	private Long flavourID;
+	private String flavourName;
+	private int itemQuantity;
 	private double orderPrice;
-	private String datePlaced;
-	private String deliveryDate;
 
 	public Orders() {
 		super();
 	}
 
-	public Orders(Long id, Long customerID, int brandID, Long flavourID, double orderPrice, String datePlaced,
-			String deliveryDate) {
+	public Orders(Long id, int brandID, Long flavourID, double orderPrice, int itemQuantity) {
 		super();
 		Id = id;
-		this.customerID = customerID;
 		this.brandID = brandID;
 		this.flavourID = flavourID;
+		this.itemQuantity = itemQuantity;
 		this.orderPrice = orderPrice;
-		this.datePlaced = datePlaced;
-		this.deliveryDate = deliveryDate;
 	}
 
-	public Orders(Long customerID, int brandID, Long flavourID, double orderPrice, String datePlaced,
-			String deliveryDate) {
+	public Orders(int brandID, Long flavourID, double orderPrice, int itemQuantity) {
 		super();
-		this.customerID = customerID;
 		this.brandID = brandID;
 		this.flavourID = flavourID;
+		this.itemQuantity = itemQuantity;
 		this.orderPrice = orderPrice;
-		this.datePlaced = datePlaced;
-		this.deliveryDate = deliveryDate;
+	}
+
+	public Orders(Long id, String brandName, String flavourName, int itemQuantity, double orderPrice) {
+		super();
+		Id = id;
+		this.brandName = brandName;
+		this.flavourName = flavourName;
+		this.itemQuantity = itemQuantity;
+		this.orderPrice = orderPrice;
+	}
+
+	public Orders(String brandName, String flavourName, int itemQuantity, double orderPrice) {
+		super();
+		this.brandName = brandName;
+		this.flavourName = flavourName;
+		this.itemQuantity = itemQuantity;
+		this.orderPrice = orderPrice;
 	}
 
 	public Long getId() {
@@ -52,14 +63,6 @@ public class Orders {
 
 	public void setId(Long id) {
 		Id = id;
-	}
-
-	public Long getCustomerID() {
-		return customerID;
-	}
-
-	public void setCustomerID(Long customerID) {
-		this.customerID = customerID;
 	}
 
 	public int getBrandID() {
@@ -86,26 +89,34 @@ public class Orders {
 		this.orderPrice = orderPrice;
 	}
 
-	public String getDatePlaced() {
-		return datePlaced;
+	public int getItemQuantity() {
+		return itemQuantity;
 	}
 
-	public void setDatePlaced(String datePlaced) {
-		this.datePlaced = datePlaced;
+	public void setItemQuantity(int itemQuantity) {
+		this.itemQuantity = itemQuantity;
 	}
 
-	public String getDeliveryDate() {
-		return deliveryDate;
+	public String getBrandName() {
+		return brandName;
 	}
 
-	public void setDeliveryDate(String deliveryDate) {
-		this.deliveryDate = deliveryDate;
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+
+	public String getFlavourName() {
+		return flavourName;
+	}
+
+	public void setFlavourName(String flavourName) {
+		this.flavourName = flavourName;
 	}
 
 	@Override
 	public String toString() {
-		return "Orders [Id=" + Id + ", customerID=" + customerID + ", brandID=" + brandID + ", flavourID=" + flavourID
-				+ ", orderPrice=" + orderPrice + ", datePlaced=" + datePlaced + ", deliveryDate=" + deliveryDate + "]";
+		return "Orders [Id=" + Id + ", brandName=" + brandName + ", flavourName=" + flavourName + ", itemQuantity="
+				+ itemQuantity + ", orderPrice=" + orderPrice + "]";
 	}
 
 }

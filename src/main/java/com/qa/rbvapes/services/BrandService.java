@@ -29,7 +29,7 @@ public class BrandService {
 		return this.repo.findByBrandName(brandName);
 	}
 
-	public Brands update(Long id, Brands newInfo) {
+	public Brands update(int id, Brands newInfo) {
 		Brands oldInfo = this.repo.getById(id);
 		oldInfo.setBrandName(newInfo.getBrandName());
 		oldInfo.setPuffCount(newInfo.getPuffCount());
@@ -37,7 +37,7 @@ public class BrandService {
 		return this.repo.save(oldInfo);
 	}
 
-	public void delete(Long id) {
+	public void delete(int id) {
 		this.repo.deleteById(id);
 	}
 }

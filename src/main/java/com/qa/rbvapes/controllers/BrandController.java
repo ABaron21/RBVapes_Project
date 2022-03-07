@@ -39,12 +39,12 @@ public class BrandController {
 	}
 
 	@PutMapping("/updateBrand/{id}")
-	public Brands updateBrand(@PathVariable Long id, @RequestBody Brands newInfo) {
+	public Brands updateBrand(@PathVariable int id, @RequestBody Brands newInfo) {
 		return this.service.update(id, newInfo);
 	}
 
 	@DeleteMapping("/deleteBrand/{id}")
-	public void deleteBrand(@PathVariable Long id) {
+	public void deleteBrand(@PathVariable int id) {
 		this.service.delete(id);
 	}
 }
