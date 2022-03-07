@@ -32,8 +32,26 @@ public class OrderService {
 		newOrder.setFlavourID(info.getFlavourID());
 		newOrder.setFlavourName(flavour.getFlavourName());
 		newOrder.setItemQuantity(info.getItemQuantity());
-		newOrder.setOrderPrice(info.getOrderPrice());
+		newOrder.setOrderPrice(priceCalc(info.getItemQuantity(), info.getBrandID()));
 		return this.repo.save(newOrder);
+	}
+
+	public double priceCalc(int ItemAmount, int BrandID) {
+		double price;
+		switch (BrandID) {
+		case 1:
+			price = ItemAmount * 15;
+			return price;
+		case 6:
+			price = ItemAmount * 10;
+			return price;
+		case 7:
+			price = ItemAmount * 5;
+			return price;
+		default:
+			return 0;
+
+		}
 	}
 
 }
