@@ -13,26 +13,26 @@ public class Flavours {
 	private Long Id;
 
 	private String flavourName;
-	private int brandID;
+	private String brandName;
 	private int Quantity;
 
 	public Flavours() {
 		super();
 	}
 
-	public Flavours(Long id, String flavourName, int brandID, int quantity) {
+	public Flavours(Long id, String flavourName, String brandName, int quantity) {
 		super();
-		Id = id;
+		this.Id = id;
 		this.flavourName = flavourName;
-		this.brandID = brandID;
-		this.Quantity = quantity;
+		this.brandName = brandName;
+		Quantity = quantity;
 	}
 
-	public Flavours(String flavourName, int brandID, int quantity) {
+	public Flavours(String flavourName, String brandName, int quantity) {
 		super();
 		this.flavourName = flavourName;
-		this.brandID = brandID;
-		this.Quantity = quantity;
+		this.brandName = brandName;
+		Quantity = quantity;
 	}
 
 	public Long getId() {
@@ -51,12 +51,12 @@ public class Flavours {
 		this.flavourName = flavourName;
 	}
 
-	public int getBrandID() {
-		return brandID;
+	public String getBrandName() {
+		return brandName;
 	}
 
-	public void setBrandID(int brandID) {
-		this.brandID = brandID;
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
 
 	public int getQuantity() {
@@ -69,8 +69,8 @@ public class Flavours {
 
 	@Override
 	public String toString() {
-		return "Flavours [Id=" + Id + ", flavourName=" + flavourName + ", brandID=" + brandID + ", Quantity=" + Quantity
-				+ "]";
+		return "Flavours [Id=" + Id + ", flavourName=" + flavourName + ", brandName=" + brandName + ", Quantity="
+				+ Quantity + "]";
 	}
 
 }

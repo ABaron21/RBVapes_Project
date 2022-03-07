@@ -25,14 +25,14 @@ public class Brands {
 		Id = id;
 		this.brandName = brandName;
 		this.puffCount = puffCount;
-		Price = price;
+		this.Price = price;
 	}
 
 	public Brands(String brandName, int puffCount, double price) {
 		super();
 		this.brandName = brandName;
 		this.puffCount = puffCount;
-		Price = price;
+		this.Price = price;
 	}
 
 	public Long getId() {

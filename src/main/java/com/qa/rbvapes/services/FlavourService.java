@@ -1,7 +1,10 @@
 package com.qa.rbvapes.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.qa.rbvapes.domains.Flavours;
 import com.qa.rbvapes.repos.FlavourRepo;
 
 @Service
@@ -14,4 +17,27 @@ public class FlavourService {
 		this.repo = repo;
 	}
 
+	public Flavours createNew(Flavours flavour) {
+		return this.repo.save(flavour);
+	}
+
+	public List<Flavours> readAll() {
+		return this.repo.findAll();
+	}
+
+	public List<Flavours> readFlavours(String brandName) {
+		return this.repo.findAllByBrandName(brandName);
+	}
+
+	public Flavours updateInfo(Long id, Flavours newInfo) {
+		Flavours oldInfo = this.repo.getById(id);
+		oldInfo.setFlavourName(newInfo.getFlavourName());
+		oldInfo.setBrandName(newInfo.getBrandName());
+		oldInfo.setQuantity(newInfo.getQuantity());
+		return this.repo.save(oldInfo);
+	}
+
+	public void delete(Long id) {
+		this.repo.deleteById(id);
+	}
 }
