@@ -1,5 +1,7 @@
 package com.qa.rbvapes.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.rbvapes.domains.OrderInfo;
@@ -17,6 +19,10 @@ public class OrderInfoService {
 
 	public OrderInfo create(OrderInfo info) {
 		return this.repo.save(info);
+	}
+
+	public List<OrderInfo> readAll() {
+		return this.repo.findAll();
 	}
 
 }
