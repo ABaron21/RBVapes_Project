@@ -25,4 +25,8 @@ public class OrderInfoService {
 		return this.repo.findAll();
 	}
 
+	public void delete(Long id) {
+		this.repo.deleteById(id);
+	}
+
 }
