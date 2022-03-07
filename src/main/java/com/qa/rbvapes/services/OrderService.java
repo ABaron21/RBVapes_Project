@@ -42,6 +42,10 @@ public class OrderService {
 		return this.repo.findAll();
 	}
 
+	public void delete(Long id) {
+		this.repo.deleteById(id);
+	}
+
 	public double priceCalc(int ItemAmount, int BrandID) {
 		double price;
 		switch (BrandID) {
