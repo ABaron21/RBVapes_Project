@@ -54,6 +54,21 @@ public class OrderService {
 		return null;
 	}
 
+	public Orders update(Long id, Orders newInfo) {
+		Orders oldInfo = this.repo.getById(id);
+		Brands brand = this.Brepo.getById(newInfo.getBrandID());
+		Flavours flavour = this.Frepo.getById(newInfo.getFlavourID());
+		Fservice.updateQtnOrder(oldInfo.getFlavourID(), oldInfo.getItemQuantity(), "refund");
+		oldInfo.setBrandID(newInfo.getBrandID());
+		oldInfo.setBrandName(brand.getBrandName());
+		oldInfo.setFlavourID(newInfo.getFlavourID());
+		oldInfo.setFlavourName(flavour.getFlavourName());
+		oldInfo.setItemQuantity(newInfo.getItemQuantity());
+		oldInfo.setOrderPrice(priceCalc(newInfo.getItemQuantity(), newInfo.getBrandID()));
+		Fservice.updateQtnOrder(newInfo.getFlavourID(), newInfo.getItemQuantity(), "purchase");
+		return this.repo.save(oldInfo);
+	}
+
 	public void delete(Long id) {
 		Orders refundedOrder = this.repo.getById(id);
 		Fservice.updateQtnOrder(refundedOrder.getFlavourID(), refundedOrder.getItemQuantity(), "refund");
