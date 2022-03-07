@@ -33,6 +33,16 @@ public class OrderInfoController {
 		return this.service.readAll();
 	}
 
+	@GetMapping("/readByDelivery/{Ddate}")
+	public List<OrderInfo> readByDelivery(@PathVariable String Ddate) {
+		return this.service.readDelivery(Ddate);
+	}
+
+	@GetMapping("/readByDatePlaced/{dateP}")
+	public List<OrderInfo> readByPlacement(@PathVariable String dateP) {
+		return this.service.readDatePlaced(dateP);
+	}
+
 	@PutMapping("/updateInfo/{id}")
 	public OrderInfo updateInfo(@PathVariable Long id, @RequestBody OrderInfo newInfo) {
 		return this.service.update(id, newInfo);

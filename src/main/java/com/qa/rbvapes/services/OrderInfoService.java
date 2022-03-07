@@ -25,6 +25,14 @@ public class OrderInfoService {
 		return this.repo.findAll();
 	}
 
+	public List<OrderInfo> readDelivery(String dDate) {
+		return this.repo.findAllByDeliveryDate(dDate);
+	}
+
+	public List<OrderInfo> readDatePlaced(String dateP) {
+		return this.repo.findAllByDatePlaced(dateP);
+	}
+
 	public OrderInfo update(Long id, OrderInfo newInfo) {
 		OrderInfo oldInfo = this.repo.getById(id);
 		oldInfo.setCustomerID(newInfo.getCustomerID());
