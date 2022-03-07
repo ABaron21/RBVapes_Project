@@ -1,5 +1,7 @@
 package com.qa.rbvapes.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.rbvapes.domains.Brands;
@@ -34,6 +36,10 @@ public class OrderService {
 		newOrder.setItemQuantity(info.getItemQuantity());
 		newOrder.setOrderPrice(priceCalc(info.getItemQuantity(), info.getBrandID()));
 		return this.repo.save(newOrder);
+	}
+
+	public List<Orders> readAll() {
+		return this.repo.findAll();
 	}
 
 	public double priceCalc(int ItemAmount, int BrandID) {
