@@ -22,16 +22,16 @@ public class Customers {
 
 	public Customers(Long id, String name, String address, String phoneNumber) {
 		super();
-		Id = id;
-		Name = name;
-		Address = address;
+		this.Id = id;
+		this.Name = name;
+		this.Address = address;
 		this.phoneNumber = phoneNumber;
 	}
 
 	public Customers(String name, String address, String phoneNumber) {
 		super();
-		Name = name;
-		Address = address;
+		this.Name = name;
+		this.Address = address;
 		this.phoneNumber = phoneNumber;
 	}
 
