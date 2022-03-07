@@ -10,7 +10,7 @@ public class Brands {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	private int Id;
 
 	private String brandName;
 	private int puffCount;
@@ -20,7 +20,7 @@ public class Brands {
 		super();
 	}
 
-	public Brands(Long id, String brandName, int puffCount, double price) {
+	public Brands(int id, String brandName, int puffCount, double price) {
 		super();
 		Id = id;
 		this.brandName = brandName;
@@ -35,11 +35,11 @@ public class Brands {
 		this.Price = price;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return Id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		Id = id;
 	}
 

@@ -12,33 +12,49 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 
-	private Long customerID;
 	private int brandID;
+	private String brandName;
 	private Long flavourID;
-	private double orderPrice;
+	private String flavourName;
 	private int itemQuantity;
+	private double orderPrice;
 
 	public Orders() {
 		super();
 	}
 
-	public Orders(Long id, Long customerID, int brandID, Long flavourID, double orderPrice, int itemQuantity) {
+	public Orders(Long id, int brandID, Long flavourID, double orderPrice, int itemQuantity) {
 		super();
 		Id = id;
-		this.customerID = customerID;
 		this.brandID = brandID;
 		this.flavourID = flavourID;
-		this.orderPrice = orderPrice;
 		this.itemQuantity = itemQuantity;
+		this.orderPrice = orderPrice;
 	}
 
-	public Orders(Long customerID, int brandID, Long flavourID, double orderPrice, int itemQuantity) {
+	public Orders(int brandID, Long flavourID, double orderPrice, int itemQuantity) {
 		super();
-		this.customerID = customerID;
 		this.brandID = brandID;
 		this.flavourID = flavourID;
-		this.orderPrice = orderPrice;
 		this.itemQuantity = itemQuantity;
+		this.orderPrice = orderPrice;
+	}
+
+	public Orders(Long id, String brandName, String flavourName, int itemQuantity, double orderPrice) {
+		super();
+		Id = id;
+		this.brandName = brandName;
+		this.flavourName = flavourName;
+		this.itemQuantity = itemQuantity;
+		this.orderPrice = orderPrice;
+	}
+
+	public Orders(String brandName, String flavourName, int itemQuantity, double orderPrice) {
+		super();
+		this.brandName = brandName;
+		this.flavourName = flavourName;
+		this.itemQuantity = itemQuantity;
+		this.orderPrice = orderPrice;
 	}
 
 	public Long getId() {
@@ -47,14 +63,6 @@ public class Orders {
 
 	public void setId(Long id) {
 		Id = id;
-	}
-
-	public Long getCustomerID() {
-		return customerID;
-	}
-
-	public void setCustomerID(Long customerID) {
-		this.customerID = customerID;
 	}
 
 	public int getBrandID() {
@@ -89,10 +97,26 @@ public class Orders {
 		this.itemQuantity = itemQuantity;
 	}
 
+	public String getBrandName() {
+		return brandName;
+	}
+
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+
+	public String getFlavourName() {
+		return flavourName;
+	}
+
+	public void setFlavourName(String flavourName) {
+		this.flavourName = flavourName;
+	}
+
 	@Override
 	public String toString() {
-		return "Orders [Id=" + Id + ", customerID=" + customerID + ", brandID=" + brandID + ", flavourID=" + flavourID
-				+ ", orderPrice=" + orderPrice + ", itemQuantity=" + itemQuantity + "]";
+		return "Orders [Id=" + Id + ", brandName=" + brandName + ", flavourName=" + flavourName + ", itemQuantity="
+				+ itemQuantity + ", orderPrice=" + orderPrice + "]";
 	}
 
 }

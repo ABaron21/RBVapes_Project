@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.qa.rbvapes.domains.Brands;
 
 @Repository
-public interface BrandRepo extends JpaRepository<Brands, Long> {
+public interface BrandRepo extends JpaRepository<Brands, Integer> {
 
 	Brands findByBrandName(String brandName);
 }
