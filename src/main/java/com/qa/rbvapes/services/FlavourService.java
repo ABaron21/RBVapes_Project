@@ -37,11 +37,18 @@ public class FlavourService {
 		return this.repo.save(oldInfo);
 	}
 
-	public void updateQtnOrder(Long id, int itemAmount) {
+	public void updateQtnOrder(Long id, int itemAmount, String type) {
 		Flavours oldAmount = this.repo.getById(id);
-		int newAmount = oldAmount.getQuantity() - itemAmount;
-		oldAmount.setQuantity(newAmount);
-		this.repo.save(oldAmount);
+		int newAmount;
+		if (type.equals("purchase")) {
+			newAmount = oldAmount.getQuantity() - itemAmount;
+			oldAmount.setQuantity(newAmount);
+			this.repo.save(oldAmount);
+		} else if (type.equals("refund")) {
+			newAmount = oldAmount.getQuantity() + itemAmount;
+			oldAmount.setQuantity(newAmount);
+			this.repo.save(oldAmount);
+		}
 	}
 
 	public void delete(Long id) {

@@ -38,7 +38,7 @@ public class OrderService {
 		newOrder.setFlavourName(flavour.getFlavourName());
 		newOrder.setItemQuantity(info.getItemQuantity());
 		newOrder.setOrderPrice(priceCalc(info.getItemQuantity(), info.getBrandID()));
-		Fservice.updateQtnOrder(newOrder.getFlavourID(), info.getItemQuantity());
+		Fservice.updateQtnOrder(newOrder.getFlavourID(), info.getItemQuantity(), "purchase");
 		return this.repo.save(newOrder);
 	}
 
@@ -55,6 +55,8 @@ public class OrderService {
 	}
 
 	public void delete(Long id) {
+		Orders refundedOrder = this.repo.getById(id);
+		Fservice.updateQtnOrder(refundedOrder.getFlavourID(), refundedOrder.getItemQuantity(), "refund");
 		this.repo.deleteById(id);
 	}
 
