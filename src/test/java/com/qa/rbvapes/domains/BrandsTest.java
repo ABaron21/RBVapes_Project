@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 public class BrandsTest {
 
 	public Brands brand;
@@ -47,11 +49,16 @@ public class BrandsTest {
 		assertNotNull(brand.getPuffCount());
 		assertNotNull(brand.getPrice());
 	}
-	
+
 	@Test
 	void toStringTest() {
 		brand = new Brands(1, "Name", 500, 14.99);
 		String toString = "Brands [Id=1, brandName=Name, puffCount=500, Price=14.99]";
 		assertEquals(toString, brand.toString());
+	}
+
+	@Test
+	public void simpleEqualsContract() {
+		EqualsVerifier.simple().forClass(Brands.class).verify();
 	}
 }

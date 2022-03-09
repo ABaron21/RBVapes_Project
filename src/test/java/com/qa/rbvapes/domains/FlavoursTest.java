@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 public class FlavoursTest {
 
 	public Flavours flavour;
@@ -52,5 +54,10 @@ public class FlavoursTest {
 		flavour = new Flavours(1L, "Name", "Brand", 15);
 		String toString = "Flavours [Id=1, flavourName=Name, brandName=Brand, Quantity=15]";
 		assertEquals(toString, flavour.toString());
+	}
+
+	@Test
+	public void simpleEqualsContract() {
+		EqualsVerifier.simple().forClass(Flavours.class).verify();
 	}
 }

@@ -6,13 +6,15 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 public class OrderTest {
 
 	public Orders order;
 
 	@Test
 	void gettersAndSettersTest() {
-		order = new Orders(1L, 1, 2L, 29.98, 2);
+		order = new Orders(1L, 1, 2L, 2, 29.98);
 
 		assertNotNull(order.getId());
 		assertNotNull(order.getBrandID());
@@ -51,7 +53,7 @@ public class OrderTest {
 
 	@Test
 	void conWithoutIdTestOne() {
-		order = new Orders(1, 2L, 29.98, 2);
+		order = new Orders(1, 2L, 2, 29.98);
 
 		assertNull(order.getId());
 		assertNotNull(order.getBrandID());
@@ -89,4 +91,8 @@ public class OrderTest {
 		assertEquals(toString, order.toString());
 	}
 
+	@Test
+	public void simpleEqualsContract() {
+		EqualsVerifier.simple().forClass(Orders.class).verify();
+	}
 }

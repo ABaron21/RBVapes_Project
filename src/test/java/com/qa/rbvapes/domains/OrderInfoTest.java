@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 public class OrderInfoTest {
 
 	public OrderInfo info;
@@ -61,4 +63,8 @@ public class OrderInfoTest {
 		assertEquals(toString, info.toString());
 	}
 
+	@Test
+	public void simpleEqualsContract() {
+		EqualsVerifier.simple().forClass(OrderInfo.class).verify();
+	}
 }

@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 public class CustomersTest {
 
 	public Customers customer;
@@ -52,5 +54,10 @@ public class CustomersTest {
 		customer = new Customers(1L, "Name", "Address", "Number");
 		String toString = "Customers [Id=1, Name=Name, Address=Address, phoneNumber=Number]";
 		assertEquals(toString, customer.toString());
+	}
+
+	@Test
+	public void simpleEqualsContract() {
+		EqualsVerifier.simple().forClass(Customers.class).verify();
 	}
 }
