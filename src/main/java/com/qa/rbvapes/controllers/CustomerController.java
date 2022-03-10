@@ -2,6 +2,8 @@ package com.qa.rbvapes.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,27 +26,27 @@ public class CustomerController {
 	}
 
 	@PostMapping("/createCustomer")
-	public Customers createCustomer(@RequestBody Customers info) {
-		return this.service.createNew(info);
+	public ResponseEntity<Customers> createCustomer(@RequestBody Customers info) {
+		return new ResponseEntity<>(this.service.createNew(info), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/readAllCustomers")
-	public List<Customers> readAll() {
-		return this.service.readAll();
+	public ResponseEntity<List<Customers>> readAll() {
+		return new ResponseEntity<>(this.service.readAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/readCustomerById/{id}")
-	public Customers readById(@PathVariable Long id) {
-		return this.service.readId(id);
+	public ResponseEntity<Customers> readById(@PathVariable Long id) {
+		return new ResponseEntity<>(this.service.readId(id), HttpStatus.FOUND);
 	}
 
 	@PutMapping("/updateCustomer/{id}")
-	public Customers updateCustomer(@PathVariable Long id, @RequestBody Customers newInfo) {
-		return this.service.updateInfo(id, newInfo);
+	public ResponseEntity<Customers> updateCustomer(@PathVariable Long id, @RequestBody Customers newInfo) {
+		return new ResponseEntity<>(this.service.updateInfo(id, newInfo), HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/deleteCustomer/{id}")
-	public void deleteCustomer(@PathVariable Long id) {
-		this.service.delete(id);
+	public ResponseEntity<Object> deleteCustomer(@PathVariable Long id) {
+		return new ResponseEntity<>(this.service.delete(id), HttpStatus.NO_CONTENT);
 	}
 }
