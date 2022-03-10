@@ -9,3 +9,7 @@ VALUES
 INSERT INTO flavours (`FLAVOUR_NAME`, `BRAND_NAME`, `QUANTITY`)
 VALUES
 ('CottonCandy', 'AromaKing', 15);
+
+INSERT INTO orders (`BRANDID`, `BRAND_NAME`, `FLAVOURID`, `FLAVOUR_NAME`, `ITEM_QUANTITY`, `ORDER_PRICE`)
+VALUES
+(1, 'AromaKing', 1L, 'CottonCandy', 2, 30.00);
