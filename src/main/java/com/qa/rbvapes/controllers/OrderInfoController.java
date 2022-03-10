@@ -2,6 +2,8 @@ package com.qa.rbvapes.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,33 +26,33 @@ public class OrderInfoController {
 	}
 
 	@PostMapping("/createOrderInfo")
-	public OrderInfo createInfo(@RequestBody OrderInfo info) {
-		return this.service.create(info);
+	public ResponseEntity<OrderInfo> createInfo(@RequestBody OrderInfo info) {
+		return new ResponseEntity<>(this.service.create(info), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/readAllInfo")
-	public List<OrderInfo> readAllInfo() {
-		return this.service.readAll();
+	public ResponseEntity<List<OrderInfo>> readAllInfo() {
+		return new ResponseEntity<>(this.service.readAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/readByDelivery/{Ddate}")
-	public List<OrderInfo> readByDelivery(@PathVariable String Ddate) {
-		return this.service.readDelivery(Ddate);
+	public ResponseEntity<List<OrderInfo>> readByDelivery(@PathVariable String Ddate) {
+		return new ResponseEntity<>(this.service.readDelivery(Ddate), HttpStatus.FOUND);
 	}
 
 	@GetMapping("/readByDatePlaced/{dateP}")
-	public List<OrderInfo> readByPlacement(@PathVariable String dateP) {
-		return this.service.readDatePlaced(dateP);
+	public ResponseEntity<List<OrderInfo>> readByPlacement(@PathVariable String dateP) {
+		return new ResponseEntity<>(this.service.readDatePlaced(dateP), HttpStatus.FOUND);
 	}
 
 	@PutMapping("/updateInfo/{id}")
-	public OrderInfo updateInfo(@PathVariable Long id, @RequestBody OrderInfo newInfo) {
-		return this.service.update(id, newInfo);
+	public ResponseEntity<OrderInfo> updateInfo(@PathVariable Long id, @RequestBody OrderInfo newInfo) {
+		return new ResponseEntity<>(this.service.update(id, newInfo), HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/deleteInfo/{id}")
-	public void deleteInfo(@PathVariable Long id) {
-		this.service.delete(id);
+	public ResponseEntity<Object> deleteInfo(@PathVariable Long id) {
+		return new ResponseEntity<>(this.service.delete(id), HttpStatus.NO_CONTENT);
 	}
 
 }
