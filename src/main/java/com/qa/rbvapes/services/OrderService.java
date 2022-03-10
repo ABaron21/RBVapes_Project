@@ -37,8 +37,9 @@ public class OrderService {
 		newOrder.setFlavourID(info.getFlavourID());
 		newOrder.setFlavourName(flavour.getFlavourName());
 		newOrder.setItemQuantity(info.getItemQuantity());
-		newOrder.setOrderPrice(priceCalc(info.getItemQuantity(), info.getBrandID()));
-		Fservice.updateQtnOrder(newOrder.getFlavourID(), info.getItemQuantity(), "purchase");
+		newOrder.setOrderPrice(info.getOrderPrice());
+		// Fservice.updateQtnOrder(newOrder.getFlavourID(), info.getItemQuantity(),
+		// "purchase");
 		return this.repo.save(newOrder);
 	}
 
@@ -58,21 +59,25 @@ public class OrderService {
 		Orders oldInfo = this.repo.getById(id);
 		Brands brand = this.Brepo.getById(newInfo.getBrandID());
 		Flavours flavour = this.Frepo.getById(newInfo.getFlavourID());
-		Fservice.updateQtnOrder(oldInfo.getFlavourID(), oldInfo.getItemQuantity(), "refund");
+		// Fservice.updateQtnOrder(oldInfo.getFlavourID(), oldInfo.getItemQuantity(),
+		// "refund");
 		oldInfo.setBrandID(newInfo.getBrandID());
 		oldInfo.setBrandName(brand.getBrandName());
 		oldInfo.setFlavourID(newInfo.getFlavourID());
 		oldInfo.setFlavourName(flavour.getFlavourName());
 		oldInfo.setItemQuantity(newInfo.getItemQuantity());
-		oldInfo.setOrderPrice(priceCalc(newInfo.getItemQuantity(), newInfo.getBrandID()));
-		Fservice.updateQtnOrder(newInfo.getFlavourID(), newInfo.getItemQuantity(), "purchase");
+		oldInfo.setOrderPrice(newInfo.getOrderPrice());
+		// Fservice.updateQtnOrder(newInfo.getFlavourID(), newInfo.getItemQuantity(),
+		// "purchase");
 		return this.repo.save(oldInfo);
 	}
 
-	public void delete(Long id) {
-		Orders refundedOrder = this.repo.getById(id);
-		Fservice.updateQtnOrder(refundedOrder.getFlavourID(), refundedOrder.getItemQuantity(), "refund");
+	public boolean delete(Long id) {
+		// Orders refundedOrder = this.repo.getById(id);
+		// Fservice.updateQtnOrder(refundedOrder.getFlavourID(),
+		// refundedOrder.getItemQuantity(), "refund");
 		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
 	}
 
 	public double priceCalc(int ItemAmount, int BrandID) {

@@ -2,6 +2,8 @@ package com.qa.rbvapes.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,27 +26,27 @@ public class BrandController {
 	}
 
 	@PostMapping("/createBrand")
-	public Brands create(@RequestBody Brands info) {
-		return this.service.createNew(info);
+	public ResponseEntity<Brands> create(@RequestBody Brands info) {
+		return new ResponseEntity<>(this.service.createNew(info), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/readAllBrands")
-	public List<Brands> readAllBrands() {
-		return this.service.readAll();
+	public ResponseEntity<List<Brands>> readAllBrands() {
+		return new ResponseEntity<>(this.service.readAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/readByBrandName/{brandName}")
-	public Brands readByBrandName(@PathVariable String brandName) {
-		return this.service.readBrandName(brandName);
+	public ResponseEntity<Brands> readByBrandName(@PathVariable String brandName) {
+		return new ResponseEntity<>(this.service.readBrandName(brandName), HttpStatus.FOUND);
 	}
 
 	@PutMapping("/updateBrand/{id}")
-	public Brands updateBrand(@PathVariable int id, @RequestBody Brands newInfo) {
-		return this.service.update(id, newInfo);
+	public ResponseEntity<Brands> updateBrand(@PathVariable int id, @RequestBody Brands newInfo) {
+		return new ResponseEntity<>(this.service.update(id, newInfo), HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/deleteBrand/{id}")
-	public void deleteBrand(@PathVariable int id) {
-		this.service.delete(id);
+	public ResponseEntity<Object> deleteBrand(@PathVariable int id) {
+		return new ResponseEntity<>(this.service.delete(id), HttpStatus.NO_CONTENT);
 	}
 }

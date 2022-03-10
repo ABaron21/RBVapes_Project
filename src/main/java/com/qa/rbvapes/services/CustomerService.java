@@ -42,7 +42,8 @@ public class CustomerService {
 		return this.repo.save(oldInfo);
 	}
 
-	public void delete(Long id) {
+	public boolean delete(Long id) {
 		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
 	}
 }

@@ -2,6 +2,8 @@ package com.qa.rbvapes.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,27 +26,27 @@ public class FlavourController {
 	}
 
 	@PostMapping("/createFlavour")
-	public Flavours createFlavour(@RequestBody Flavours flavour) {
-		return this.service.createNew(flavour);
+	public ResponseEntity<Flavours> createFlavour(@RequestBody Flavours flavour) {
+		return new ResponseEntity<>(this.service.createNew(flavour), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/readAllFlavours")
-	public List<Flavours> readAllFlavours() {
-		return this.service.readAll();
+	public ResponseEntity<List<Flavours>> readAllFlavours() {
+		return new ResponseEntity<>(this.service.readAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/readFlavoursByBrand/{brandName}")
-	public List<Flavours> readByBrand(@PathVariable String brandName) {
-		return this.service.readFlavours(brandName);
+	public ResponseEntity<List<Flavours>> readByBrand(@PathVariable String brandName) {
+		return new ResponseEntity<>(this.service.readFlavours(brandName), HttpStatus.OK);
 	}
 
 	@PutMapping("/updateFlavour/{id}")
-	public Flavours updateFlavour(@PathVariable Long id, @RequestBody Flavours newInfo) {
-		return this.service.updateInfo(id, newInfo);
+	public ResponseEntity<Flavours> updateFlavour(@PathVariable Long id, @RequestBody Flavours newInfo) {
+		return new ResponseEntity<>(this.service.updateInfo(id, newInfo), HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/deleteFlavour/{id}")
-	public void deleteFlavour(@PathVariable Long id) {
-		this.service.delete(id);
+	public ResponseEntity<Object> deleteFlavour(@PathVariable Long id) {
+		return new ResponseEntity<>(this.service.delete(id), HttpStatus.NO_CONTENT);
 	}
 }

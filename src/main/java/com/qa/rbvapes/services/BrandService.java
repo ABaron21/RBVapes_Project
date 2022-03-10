@@ -37,7 +37,8 @@ public class BrandService {
 		return this.repo.save(oldInfo);
 	}
 
-	public void delete(int id) {
+	public boolean delete(int id) {
 		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
 	}
 }

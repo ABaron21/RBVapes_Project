@@ -1,5 +1,7 @@
 package com.qa.rbvapes.domains;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -70,6 +72,24 @@ public class Brands {
 	@Override
 	public String toString() {
 		return "Brands [Id=" + Id + ", brandName=" + brandName + ", puffCount=" + puffCount + ", Price=" + Price + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(Price, brandName, puffCount);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Brands other = (Brands) obj;
+		return Double.doubleToLongBits(Price) == Double.doubleToLongBits(other.Price)
+				&& Objects.equals(brandName, other.brandName) && puffCount == other.puffCount;
 	}
 
 }
