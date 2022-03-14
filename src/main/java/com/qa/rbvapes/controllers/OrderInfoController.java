@@ -1,5 +1,6 @@
 package com.qa.rbvapes.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -37,12 +38,12 @@ public class OrderInfoController {
 
 	@GetMapping("/readByDelivery/{Ddate}")
 	public ResponseEntity<List<OrderInfo>> readByDelivery(@PathVariable String Ddate) {
-		return new ResponseEntity<>(this.service.readDelivery(Ddate), HttpStatus.FOUND);
+		return new ResponseEntity<>(this.service.readDelivery(LocalDate.parse(Ddate)), HttpStatus.FOUND);
 	}
 
 	@GetMapping("/readByDatePlaced/{dateP}")
 	public ResponseEntity<List<OrderInfo>> readByPlacement(@PathVariable String dateP) {
-		return new ResponseEntity<>(this.service.readDatePlaced(dateP), HttpStatus.FOUND);
+		return new ResponseEntity<>(this.service.readDatePlaced(LocalDate.parse(dateP)), HttpStatus.FOUND);
 	}
 
 	@PutMapping("/updateInfo/{id}")

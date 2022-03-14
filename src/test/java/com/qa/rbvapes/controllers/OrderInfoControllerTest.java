@@ -1,5 +1,7 @@
 package com.qa.rbvapes.controllers;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -36,11 +38,13 @@ public class OrderInfoControllerTest {
 
 	private Long id = 1L;
 	private final String URL = "http://localhost:8080/";
+	private LocalDate date = LocalDate.now();
+	private LocalDate dateD = date.plus(3, ChronoUnit.DAYS);
 
 	@Test
 	public void testCreate() throws Exception {
-		OrderInfo newInfo = new OrderInfo(1L, 1L, "2022-03-11", "2022-03-14");
-		OrderInfo expected = new OrderInfo(2L, 1L, 1L, "2022-03-11", "2022-03-14");
+		OrderInfo newInfo = new OrderInfo(1L, 1L, date, dateD);
+		OrderInfo expected = new OrderInfo(2L, 1L, 1L, date, dateD);
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
 				.request(HttpMethod.POST, URL + "createOrderInfo").contentType(MediaType.APPLICATION_JSON)
@@ -55,7 +59,7 @@ public class OrderInfoControllerTest {
 
 	@Test
 	public void testReadAll() throws Exception {
-		List<OrderInfo> expected = List.of(new OrderInfo(id, 1L, 1L, "2022-03-10", "2022-03-13"));
+		List<OrderInfo> expected = List.of(new OrderInfo(id, 1L, 1L, date, dateD));
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, URL + "readAllInfo");
 
@@ -67,11 +71,11 @@ public class OrderInfoControllerTest {
 
 	@Test
 	public void testReadByDelivery() throws Exception {
-		String date = "2022-03-13";
-		List<OrderInfo> expected = List.of(new OrderInfo(id, 1L, 1L, "2022-03-10", "2022-03-13"));
+		String dateExpect = "2022-03-17";
+		List<OrderInfo> expected = List.of(new OrderInfo(id, 1L, 1L, date, dateD));
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
-				URL + "readByDelivery/" + date);
+				URL + "readByDelivery/" + dateExpect);
 
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isFound();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(map.writeValueAsString(expected));
@@ -81,11 +85,11 @@ public class OrderInfoControllerTest {
 
 	@Test
 	public void testReadByDatePlaced() throws Exception {
-		String date = "2022-03-10";
-		List<OrderInfo> expected = List.of(new OrderInfo(id, 1L, 1L, "2022-03-10", "2022-03-13"));
+		String datePlaced = "2022-03-14";
+		List<OrderInfo> expected = List.of(new OrderInfo(id, 1L, 1L, date, dateD));
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
-				URL + "readByDatePlaced/" + date);
+				URL + "readByDatePlaced/" + datePlaced);
 
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isFound();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(map.writeValueAsString(expected));
@@ -95,8 +99,8 @@ public class OrderInfoControllerTest {
 
 	@Test
 	public void testUpdate() throws Exception {
-		OrderInfo newInfo = new OrderInfo(1L, 1L, "2022-03-11", "2022-03-14");
-		OrderInfo expected = new OrderInfo(1L, 1L, 1L, "2022-03-11", "2022-03-14");
+		OrderInfo newInfo = new OrderInfo(1L, 1L, date, dateD);
+		OrderInfo expected = new OrderInfo(1L, 1L, 1L, date, dateD);
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
 				.request(HttpMethod.PUT, URL + "updateInfo/" + id).contentType(MediaType.APPLICATION_JSON)

@@ -1,5 +1,6 @@
 package com.qa.rbvapes.domains;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -16,14 +17,14 @@ public class OrderInfo {
 
 	private Long customerID;
 	private Long orderID;
-	private String datePlaced;
-	private String deliveryDate;
+	private LocalDate datePlaced;
+	private LocalDate deliveryDate;
 
 	public OrderInfo() {
 		super();
 	}
 
-	public OrderInfo(Long id, Long customerID, Long orderID, String datePlaced, String deliveryDate) {
+	public OrderInfo(Long id, Long customerID, Long orderID, LocalDate datePlaced, LocalDate deliveryDate) {
 		super();
 		Id = id;
 		this.customerID = customerID;
@@ -32,7 +33,7 @@ public class OrderInfo {
 		this.deliveryDate = deliveryDate;
 	}
 
-	public OrderInfo(Long customerID, Long orderID, String datePlaced, String deliveryDate) {
+	public OrderInfo(Long customerID, Long orderID, LocalDate datePlaced, LocalDate deliveryDate) {
 		super();
 		this.customerID = customerID;
 		this.orderID = orderID;
@@ -64,19 +65,19 @@ public class OrderInfo {
 		this.orderID = orderID;
 	}
 
-	public String getDatePlaced() {
+	public LocalDate getDatePlaced() {
 		return datePlaced;
 	}
 
-	public void setDatePlaced(String datePlaced) {
-		this.datePlaced = datePlaced;
+	public void setDatePlaced(LocalDate date) {
+		this.datePlaced = date;
 	}
 
-	public String getDeliveryDate() {
+	public LocalDate getDeliveryDate() {
 		return deliveryDate;
 	}
 
-	public void setDeliveryDate(String deliveryDate) {
+	public void setDeliveryDate(LocalDate deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
 

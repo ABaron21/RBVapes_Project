@@ -2,6 +2,8 @@ package com.qa.rbvapes.controllers;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,8 +43,8 @@ public class FlavourController {
 	}
 
 	@PutMapping("/updateFlavour/{id}")
-	public ResponseEntity<Flavours> updateFlavour(@PathVariable Long id, @RequestBody Flavours newInfo) {
-		return new ResponseEntity<>(this.service.updateInfo(id, newInfo), HttpStatus.ACCEPTED);
+	public ResponseEntity<Flavours> updateFlavour(@PathVariable Long id, @RequestBody int newQtn) {
+		return new ResponseEntity<>(this.service.updateInfo(id, newQtn), HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/deleteFlavour/{id}")

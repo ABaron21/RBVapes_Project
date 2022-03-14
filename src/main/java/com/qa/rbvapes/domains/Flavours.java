@@ -37,6 +37,10 @@ public class Flavours {
 		Quantity = quantity;
 	}
 
+	public Flavours(int quantity) {
+		Quantity = quantity;
+	}
+
 	public Long getId() {
 		return Id;
 	}

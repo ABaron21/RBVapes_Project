@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import org.junit.jupiter.api.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -11,10 +14,12 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 public class OrderInfoTest {
 
 	public OrderInfo info;
+	private LocalDate date = LocalDate.now();
+	private LocalDate dateD = date.plus(3, ChronoUnit.DAYS);
 
 	@Test
 	void gettersAndSettersTest() {
-		info = new OrderInfo(1L, 1L, 1L, "Placed", "Delivery");
+		info = new OrderInfo(1L, 1L, 1L, date, dateD);
 
 		assertNotNull(info.getId());
 		assertNotNull(info.getCustomerID());
@@ -47,7 +52,7 @@ public class OrderInfoTest {
 
 	@Test
 	void conWithoutIdTest() {
-		info = new OrderInfo(1L, 1L, "Placed", "Delivery");
+		info = new OrderInfo(1L, 1L, date, dateD);
 
 		assertNull(info.getId());
 		assertNotNull(info.getCustomerID());
@@ -58,8 +63,9 @@ public class OrderInfoTest {
 
 	@Test
 	void toStringTest() {
-		info = new OrderInfo(1L, 1L, 1L, "Placed", "Delivery");
-		String toString = "OrderInfo [Id=1, customerID=1, orderID=1, datePlaced=Placed, deliveryDate=Delivery]";
+		info = new OrderInfo(1L, 1L, 1L, date, dateD);
+		String toString = "OrderInfo [Id=1, customerID=1, orderID=1, datePlaced=" + date + ", deliveryDate=" + dateD
+				+ "]";
 		assertEquals(toString, info.toString());
 	}
 
