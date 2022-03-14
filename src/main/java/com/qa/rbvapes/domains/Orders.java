@@ -16,8 +16,10 @@ public class Orders {
 
 	private int brandID;
 	private String brandName;
+
 	private Long flavourID;
 	private String flavourName;
+
 	private int itemQuantity;
 	private double orderPrice;
 
@@ -27,7 +29,7 @@ public class Orders {
 
 	public Orders(Long id, int brandID, Long flavourID, int itemQuantity, double orderPrice) {
 		super();
-		Id = id;
+		this.Id = id;
 		this.brandID = brandID;
 		this.flavourID = flavourID;
 		this.itemQuantity = itemQuantity;
@@ -44,7 +46,7 @@ public class Orders {
 
 	public Orders(Long id, String brandName, String flavourName, int itemQuantity, double orderPrice) {
 		super();
-		Id = id;
+		this.Id = id;
 		this.brandName = brandName;
 		this.flavourName = flavourName;
 		this.itemQuantity = itemQuantity;
@@ -62,7 +64,7 @@ public class Orders {
 	public Orders(Long id, int brandID, String brandName, Long flavourID, String flavourName, int itemQuantity,
 			double orderPrice) {
 		super();
-		Id = id;
+		this.Id = id;
 		this.brandID = brandID;
 		this.brandName = brandName;
 		this.flavourID = flavourID;
@@ -158,8 +160,7 @@ public class Orders {
 		if (getClass() != obj.getClass())
 			return false;
 		Orders other = (Orders) obj;
-		return brandID == other.brandID && Objects.equals(brandName, other.brandName)
-				&& Objects.equals(flavourID, other.flavourID) && Objects.equals(flavourName, other.flavourName)
+		return Objects.equals(brandName, other.brandName) && Objects.equals(flavourName, other.flavourName)
 				&& itemQuantity == other.itemQuantity
 				&& Double.doubleToLongBits(orderPrice) == Double.doubleToLongBits(other.orderPrice);
 	}

@@ -2,6 +2,8 @@ package com.qa.rbvapes.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.qa.rbvapes.domains.Customers;
 import com.qa.rbvapes.domains.OrderInfo;
 import com.qa.rbvapes.repos.OrderInfoRepo;
 
@@ -20,6 +23,8 @@ public class OrderInfoServiceTest {
 
 	private OrderInfo newInfo;
 	private OrderInfo savedInfo;
+	private LocalDate date = LocalDate.now();
+	private LocalDate dateD = date.plus(3, ChronoUnit.DAYS);
 
 	@MockBean
 	private OrderInfoRepo repo;
@@ -29,8 +34,8 @@ public class OrderInfoServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		newInfo = new OrderInfo(1L, 1L, "2022-03-09", "2022-03-12");
-		savedInfo = new OrderInfo(1L, 1L, 1L, "2022-03-09", "2022-03-12");
+		newInfo = new OrderInfo(1L, 1L, date, dateD);
+		savedInfo = new OrderInfo(1L, 1L, 1L, date, dateD);
 	}
 
 	@Test
@@ -42,10 +47,23 @@ public class OrderInfoServiceTest {
 	}
 
 	@Test
+	public void testCreateBasedonOrder() {
+		Long cID = 1L;
+		Long oID = 1L;
+		Customers customer = new Customers(cID, "Alex", "Address", "Number");
+		OrderInfo expected = new OrderInfo(1L, cID, oID, date, dateD);
+
+		Mockito.when(this.repo.save(newInfo)).thenReturn(expected);
+		assertThat(this.service.createInfo(cID, oID)).isEqualTo(expected);
+
+		Mockito.verify(this.repo, Mockito.times(1)).save(newInfo);
+	}
+
+	@Test
 	public void testUpdate() {
 		Long id = 1L;
 		OrderInfo returned = savedInfo;
-		OrderInfo update = new OrderInfo(1L, 1L, "2022-03-10", "2022-03-13");
+		OrderInfo update = new OrderInfo(1L, 1L, dateD, dateD);
 		OrderInfo updated = new OrderInfo(id, update.getCustomerID(), update.getOrderID(), update.getDatePlaced(),
 				update.getDeliveryDate());
 
@@ -89,23 +107,21 @@ public class OrderInfoServiceTest {
 
 	@Test
 	public void testReadByDeliveryDate() {
-		String date = "2022-03-12";
 		List<OrderInfo> expected = new ArrayList<>();
 		expected.add(newInfo);
 
-		Mockito.when(this.repo.findAllByDeliveryDate(date)).thenReturn(expected);
+		Mockito.when(this.repo.findAllByDeliveryDate(dateD)).thenReturn(expected);
 
-		List<OrderInfo> result = this.service.readDelivery(date);
+		List<OrderInfo> result = this.service.readDelivery(dateD);
 
 		assertThat(result).isNotNull();
 		assertThat(result).isEqualTo(expected);
 
-		Mockito.verify(this.repo, Mockito.times(1)).findAllByDeliveryDate(date);
+		Mockito.verify(this.repo, Mockito.times(1)).findAllByDeliveryDate(dateD);
 	}
 
 	@Test
 	public void testReadByDatePlaced() {
-		String date = "2022-03-09";
 		List<OrderInfo> expected = new ArrayList<>();
 		expected.add(newInfo);
 

@@ -83,12 +83,12 @@ public class FlavourControllerTest {
 
 	@Test
 	public void testUpdate() throws Exception {
-		Flavours newF = new Flavours("BlueIce", "Elux", 12);
-		Flavours expected = new Flavours(1L, "BlueIce", "Elux", 12);
+		int newQ = 15;
+		Flavours expected = new Flavours(1L, "CottonCandy", "AromaKing", 15);
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
 				.request(HttpMethod.PUT, URL + "updateFlavour/" + id).contentType(MediaType.APPLICATION_JSON)
-				.content(map.writeValueAsString(newF)).accept(MediaType.APPLICATION_JSON);
+				.content(map.writeValueAsString(newQ)).accept(MediaType.APPLICATION_JSON);
 
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isAccepted();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(map.writeValueAsString(expected));

@@ -46,14 +46,14 @@ public class FlavourServiceTest {
 	public void testUpdate() {
 		Long id = 1L;
 		Flavours returned = savedFlavour;
-		Flavours update = new Flavours("BlueIce", "Elux", 12);
-		Flavours updated = new Flavours(id, update.getFlavourName(), update.getBrandName(), update.getQuantity());
+		int updateQtn = 18;
+		Flavours updated = new Flavours(id, savedFlavour.getFlavourName(), savedFlavour.getBrandName(), updateQtn);
 
 		Mockito.when(this.repo.save(savedFlavour)).thenReturn(savedFlavour);
 		Mockito.when(this.repo.getById(id)).thenReturn(returned);
 		Mockito.when(this.repo.save(updated)).thenReturn(updated);
 
-		assertThat(this.service.updateInfo(id, update)).isEqualTo(updated);
+		assertThat(this.service.updateInfo(id, updateQtn)).isEqualTo(updated);
 
 		Mockito.verify(this.repo, Mockito.times(1)).save(savedFlavour);
 		Mockito.verify(this.repo, Mockito.times(1)).save(updated);

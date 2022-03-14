@@ -29,27 +29,25 @@ public class FlavourService {
 		return this.repo.findAllByBrandName(brandName);
 	}
 
-	public Flavours updateInfo(Long id, Flavours newInfo) {
+	public Flavours updateInfo(Long id, int newQtn) {
 		Flavours oldInfo = this.repo.getById(id);
-		oldInfo.setFlavourName(newInfo.getFlavourName());
-		oldInfo.setBrandName(newInfo.getBrandName());
-		oldInfo.setQuantity(newInfo.getQuantity());
+		oldInfo.setQuantity(newQtn);
 		return this.repo.save(oldInfo);
 	}
 
-//	public void updateQtnOrder(Long id, int itemAmount, String type) {
-//		Flavours oldAmount = this.repo.getById(id);
-//		int newAmount;
-//		if (type.equals("purchase")) {
-//			newAmount = oldAmount.getQuantity() - itemAmount;
-//			oldAmount.setQuantity(newAmount);
-//			this.repo.save(oldAmount);
-//		} else if (type.equals("refund")) {
-//			newAmount = oldAmount.getQuantity() + itemAmount;
-//			oldAmount.setQuantity(newAmount);
-//			this.repo.save(oldAmount);
-//		}
-//	}
+	public void updateQtnOrder(Long id, int itemAmount, String type) {
+		Flavours oldAmount = this.repo.getById(id);
+		int newAmount;
+		if (type.equals("purchase")) {
+			newAmount = oldAmount.getQuantity() - itemAmount;
+			oldAmount.setQuantity(newAmount);
+			this.repo.save(oldAmount);
+		} else if (type.equals("refund")) {
+			newAmount = oldAmount.getQuantity() + itemAmount;
+			oldAmount.setQuantity(newAmount);
+			this.repo.save(oldAmount);
+		}
+	}
 
 	public boolean delete(Long id) {
 		this.repo.deleteById(id);

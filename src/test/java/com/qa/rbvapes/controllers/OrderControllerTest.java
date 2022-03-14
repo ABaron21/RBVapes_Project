@@ -42,9 +42,9 @@ public class OrderControllerTest {
 		Orders newO = new Orders(1, 1L, 1, 15.00);
 		Orders expected = new Orders(2L, 1, "AromaKing", 1L, "CottonCandy", 1, 15.00);
 
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, URL + "createOrder")
-				.contentType(MediaType.APPLICATION_JSON).content(map.writeValueAsString(newO))
-				.accept(MediaType.APPLICATION_JSON);
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
+				.request(HttpMethod.POST, URL + "createOrder/" + id).contentType(MediaType.APPLICATION_JSON)
+				.content(map.writeValueAsString(newO)).accept(MediaType.APPLICATION_JSON);
 
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isCreated();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(map.writeValueAsString(expected));

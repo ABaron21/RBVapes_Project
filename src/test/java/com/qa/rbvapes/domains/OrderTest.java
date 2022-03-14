@@ -6,8 +6,6 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
-
 public class OrderTest {
 
 	public Orders order;
@@ -91,8 +89,4 @@ public class OrderTest {
 		assertEquals(toString, order.toString());
 	}
 
-	@Test
-	public void simpleEqualsContract() {
-		EqualsVerifier.simple().forClass(Orders.class).verify();
-	}
 }

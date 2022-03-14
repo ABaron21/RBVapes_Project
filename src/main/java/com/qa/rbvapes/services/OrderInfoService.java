@@ -1,35 +1,53 @@
 package com.qa.rbvapes.services;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.qa.rbvapes.domains.Customers;
 import com.qa.rbvapes.domains.OrderInfo;
+import com.qa.rbvapes.repos.CustomerRepo;
 import com.qa.rbvapes.repos.OrderInfoRepo;
 
 @Service
 public class OrderInfoService {
 
-	private OrderInfoRepo repo;
+	private LocalDate date = LocalDate.now();
 
-	public OrderInfoService(OrderInfoRepo repo) {
+	private OrderInfoRepo repo;
+	private CustomerRepo Crepo;
+
+	public OrderInfoService(OrderInfoRepo repo, CustomerRepo Crepo) {
 		super();
 		this.repo = repo;
+		this.Crepo = Crepo;
 	}
 
 	public OrderInfo create(OrderInfo info) {
 		return this.repo.save(info);
 	}
 
+	public OrderInfo createInfo(Long cID, Long oID) {
+		Customers customer = this.Crepo.getById(cID);
+		OrderInfo newInfo = new OrderInfo();
+		newInfo.setCustomerID(customer.getId());
+		newInfo.setOrderID(oID);
+		newInfo.setDatePlaced(date);
+		newInfo.setDeliveryDate(date.plus(3, ChronoUnit.DAYS));
+		return this.repo.save(newInfo);
+	}
+
 	public List<OrderInfo> readAll() {
 		return this.repo.findAll();
 	}
 
-	public List<OrderInfo> readDelivery(String dDate) {
+	public List<OrderInfo> readDelivery(LocalDate dDate) {
 		return this.repo.findAllByDeliveryDate(dDate);
 	}
 
-	public List<OrderInfo> readDatePlaced(String dateP) {
+	public List<OrderInfo> readDatePlaced(LocalDate dateP) {
 		return this.repo.findAllByDatePlaced(dateP);
 	}
 

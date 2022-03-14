@@ -1,5 +1,6 @@
 package com.qa.rbvapes.repos;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +11,7 @@ import com.qa.rbvapes.domains.OrderInfo;
 @Repository
 public interface OrderInfoRepo extends JpaRepository<OrderInfo, Long> {
 
-	List<OrderInfo> findAllByDeliveryDate(String deliveryDate);
+	List<OrderInfo> findAllByDeliveryDate(LocalDate deliveryDate);
 
-	List<OrderInfo> findAllByDatePlaced(String datePlaced);
+	List<OrderInfo> findAllByDatePlaced(LocalDate datePlaced);
 }
