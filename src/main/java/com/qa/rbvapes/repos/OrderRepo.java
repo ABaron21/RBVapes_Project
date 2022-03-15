@@ -10,5 +10,5 @@ import com.qa.rbvapes.domains.Orders;
 public interface OrderRepo extends JpaRepository<Orders, Long> {
 
 	@Query(value = "SELECT * FROM ORDERS ORDER BY ID DESC LIMIT 1", nativeQuery = true)
-	public Orders getLastResult();
+	Orders getLastResult();
 }

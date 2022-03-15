@@ -42,8 +42,9 @@ public class OrderService {
 		newOrder.setItemQuantity(info.getItemQuantity());
 		newOrder.setOrderPrice(priceCalc(info.getItemQuantity(), info.getBrandID()));
 		Fservice.updateQtnOrder(newOrder.getFlavourID(), info.getItemQuantity(), "purchase");
+		this.repo.save(newOrder);
 		orderInfo(id);
-		return this.repo.save(newOrder);
+		return newOrder;
 	}
 
 	public void orderInfo(Long id) {

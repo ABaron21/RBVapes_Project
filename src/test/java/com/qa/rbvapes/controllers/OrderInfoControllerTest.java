@@ -71,7 +71,7 @@ public class OrderInfoControllerTest {
 
 	@Test
 	public void testReadByDelivery() throws Exception {
-		String dateExpect = "2022-03-17";
+		String dateExpect = "2022-03-18";
 		List<OrderInfo> expected = List.of(new OrderInfo(id, 1L, 1L, date, dateD));
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
@@ -85,7 +85,7 @@ public class OrderInfoControllerTest {
 
 	@Test
 	public void testReadByDatePlaced() throws Exception {
-		String datePlaced = "2022-03-14";
+		String datePlaced = "2022-03-15";
 		List<OrderInfo> expected = List.of(new OrderInfo(id, 1L, 1L, date, dateD));
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
