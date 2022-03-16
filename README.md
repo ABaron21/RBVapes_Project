@@ -49,12 +49,28 @@ DATABASE:
 ![image](https://user-images.githubusercontent.com/97595011/158203475-2bf28ff9-4907-4b4c-89f3-b603426b0422.png)
 
 
-TEST-RESULTS&COVERAGE
+TEST-RESULTS & COVERAGE
 ![image](https://user-images.githubusercontent.com/97595011/158204097-8b578c21-d139-4957-ac92-e546e53b6b2b.png)
 
 
 JIRA-BOARD:
 https://abqa.atlassian.net/jira/software/projects/RB/boards/2/roadmap
+
+
+INSTALLING & RUNNING
+You'll need: Java, Maven, Spring Boot, Eclipse IDE, MySql & Postman
+Once everything is installed you'll need to create a database within MySql called "rb_vapes" and tell MySql to use the database.
+Before running the application you need to make sure that these maven dependencies are included:
+Spring Boot Starter Data JPA
+Spring Boot Starter Web
+Spring Boot Devtools
+H2 Database
+Spring Boot Starter Test
+Lombok
+Testing Dependencies: JUnit & Mockito
+
+Executing the requests within post man you'll have to make sure the URL begins with "http://localhost:8080"
+
 
 Additonal-Info:
 The Date placed & Delievery date have to be changed with the data-test.sql file and within the intergration test to the Date placed: current date and Delivery date: 3 days from current date.
