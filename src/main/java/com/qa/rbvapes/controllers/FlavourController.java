@@ -2,7 +2,6 @@ package com.qa.rbvapes.controllers;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
