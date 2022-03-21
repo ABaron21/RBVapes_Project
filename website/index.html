@@ -6,46 +6,105 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RB Vapes</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
-    <!-- Nav Bar -->
-    <nav class="navbar">
-        <div class="navbar_container">
-            <img src="Images/logo.png" id="logo" href="index.html">
-            <div class="navbar_toggle" id="mobile_menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+    <section class="main_background">
+        <!-- Nav Bar -->
+        <nav class="navbar">
+            <div class="navbar_container">
+                <img src="Images/logo.png" id="logo" href="index.html">
+                <div class="navbar_toggle" id="mobile_menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="navbar_menu">
+                    <li class="navbar_item">
+                        <a href="index.html" class="navbar_links" id="home-page">Home</a>
+                    </li>
+                    <li class="navbar_item">
+                        <a href="about.html" class="navbar_links" id="about-page">About</a>
+                    </li>
+                    <li class="navbar_item">
+                        <a href="shop.html" class="navbar_links" id="order-page">Orders</a>
+                    </li>
+                    <li class="navbar_btn">
+                        <a href="sign-in" class="nav_button" id="signin-page">Sign In/Register</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="navbar_menu">
-                <li class="navbar_item">
-                    <a href="index.html" class="navbar_links" id="home-page">Home</a>
-                </li>
-                <li class="navbar_item">
-                    <a href="#about" class="navbar_links" id="about-page">About</a>
-                </li>
-                <li class="navbar_item">
-                    <a href="#order" class="navbar_links" id="order-page">Orders</a>
-                </li>
-                <li class="navbar_btn">
-                    <a href="sign-in" class="nav_button" id="signin-page">Sign In/Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- Main Page -->
-    <div class="main_page" id="home">
-        <div class="main_container">
-            <h1 class="main_title">Welcome to R&B Vapes</h1>
-            <h2 class="main_heading">Your Online Vape Shop</h2>
-            <p class="main_tag">Check out all of our vape brands & flavours and Order yours today!</p>
-            <button class="order_btn"><a href="#order" class="order_button">Order Now!</a></button>
+        <!-- Main Page -->
+        <section class="hero" id="home">
+            <div class="hero_container">
+                <h1 class="main_title">Welcome to R&B Vapes</h1>
+                <h2 class="main_heading">Your Online Vape Shop</h2>
+                <p class="main_tag">Check out all of our vape brands & flavours and Order yours today!</p>
+                <button class="order_btn"><a href="shop.html" class="order_button">Order Now!</a></button>
 
-        </div>
-    </div>
+            </div>
+        </section>
+        <section class="recommended">
+            <div class="recommended_container">
+                <h4 class="recommended_title">Recommended</h4>
+                <p class="recommended_tag">Recommended Vapes For You</p>
+                <div class="recommended_one">
+                    <img src="Images/example.png" alt="example" href="#">
+                    <p class="recommended_product">Aroma King: Flavour</p>
+                    <p class="recommended_price">Price: £15.00</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="signup">
+            <div class="signup_container">
+                <div class="left_col">
+                    <h1 class="signup_title">Sign Up Today!</h1>
+                    <p class="signup_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor
+                        incididunt ut labore et dolore magna aliqua.</p>
+                    <!-- Sign Up Button Here -->
+                </div>
+                <div class="right_col">
+                    <img src="Images/logo.png" alt="logo">
+                </div>
+            </div>
+        </section>
+        
+        <section class="feedback">
+            <div class="feedback_container">
+                <h1 class="feedback_title">Feedback</h1>
+                <form action="">
+                    <label for="name">Name:</label>
+                    <input type="text" class="name_text" id="user_name" placeholder="Enter Name">
+                
+                    <label for="message">Message:</label>
+                    <textarea name="message" id="message" cols="30" rows="10" placeholder="Enter Your Message Here"></textarea>
+                
+                    <input type="submit" class="send_feedback" value="Send Feedback">
+                </form>
+            </div>
+        </section>
+
+        <section class="socials">
+            <div class="socials_container">
+                <ul class="socials_list">
+                    <li class="social_icon">
+                        <img src="Images/facebook-icon.png" alt="Facebook" href="#">
+                    </li>
+                    <li class="social_icon">
+                        <img src="Images/snapchat-icon.png" alt="Instagram" href="#">
+                    </li>
+                    <li class="social_icon">
+                        <img src="Images/snapchat-icon.png" alt="Snapchat" href="#">
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </section>
 
     <script src="app.js"></script>
 </body>
