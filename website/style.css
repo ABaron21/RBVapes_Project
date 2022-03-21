@@ -6,6 +6,10 @@
     scroll-behavior: smooth;
 }
 
+:root{
+    --primary-colour: linear-gradient(45deg , rgb(37, 206, 206), rgb(15, 255, 215));
+}
+
 .navbar {
     background: #000000;
     height: 80px;
@@ -73,14 +77,12 @@
 }
 
 .nav_button:hover {
-    background: rgb(15, 255, 215);
-    background: linear-gradient(to right , rgb(37, 206, 206), rgb(15, 255, 215));
+    background: var(--primary-colour);
     transition: all 0.3s ease;
 }
 
 .navbar_links:hover {
-    background: rgb(15, 255, 215);
-    background: linear-gradient(to right , rgb(37, 206, 206), rgb(15, 255, 215));
+    background: var(--primary-colour);
     transition: all 0.3s ease;
 }
 
@@ -183,8 +185,7 @@
 
 /* Main Page */
 .main_page{
-    background: rgb(15, 255, 215);
-    background: linear-gradient(to right , rgb(37, 206, 206), rgb(15, 255, 215));
+    background: var(--primary-colour);
     padding: 200px, 0;
 }
 
